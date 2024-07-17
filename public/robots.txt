@@ -1,0 +1,10 @@
+User-agent: *
+
+Disallow: /*/user/*/settings
+Disallow: /*/user/*/dashboard
+
+Sitemap: https://www.website.com/sitemap.xml
+
+Sitemap: https://www.website.com/en-US/sitemap.xml
+Sitemap: https://www.website.com/pt-BR/sitemap.xml
+Sitemap: https://www.website.com/es-ES/sitemap.xml

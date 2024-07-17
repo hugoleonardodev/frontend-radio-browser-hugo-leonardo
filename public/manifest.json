@@ -1,0 +1,16 @@
+{
+  "name": "Radio Browser",
+  "short_name": "radiobrowser",
+  "description": "Radio browser frontend",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "icons": [
+    {
+      "src": "/favicons/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

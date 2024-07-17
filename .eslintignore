@@ -1,0 +1,14 @@
+# Ignore artifacts:
+node_modules
+build
+coverage
+
+next.config.js
+postcss.config.js
+jest.config.js
+jest.setup.js
+
+**/*.md
+/src/tests
+
+next-env.d.ts
