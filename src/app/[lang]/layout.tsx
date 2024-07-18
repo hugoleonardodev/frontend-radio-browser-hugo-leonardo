@@ -4,6 +4,8 @@ import { Inter, Roboto_Mono } from 'next/font/google'
 import { type Metadata } from 'next'
 import { type LocalesAvailable } from '@/functions/getDictionary'
 import { RadioPlayerProvider } from '@/context/radio-player-provider'
+import '@/app/[lang]/globals.css'
+import SearchNavigation from '@/components/organisms/search-navigation/search-navigation'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -43,6 +45,7 @@ export default async function RootLayout({
         </Head> */}
 
           <body className={`${inter.variable} ${robotoMono.variable} `}>
+            <SearchNavigation />
             <main className="flex items-start sm:items-start justify-center p-4 sm:p-8 gap-8">{children}</main>
           </body>
         </html>

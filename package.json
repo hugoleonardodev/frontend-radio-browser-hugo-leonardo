@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "docker:build": "docker build -t frontend-radio-browser .",
+    "docker:run": "docker run -p 3000:3000 frontend-radio-browser",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -14,7 +16,7 @@
     "@formatjs/intl-localematcher": "^0.5.4",
     "@hookform/resolvers": "^3.3.4",
     "clsx": "^2.1.0",
-    "flowbite-react": "^0.8.0",
+    "flowbite-react": "^0.10.1",
     "negotiator": "^0.6.3",
     "next": "^14.2.3",
     "react": "^18",

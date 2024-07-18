@@ -87,13 +87,13 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
 
   return (
     <div>
-      <audio ref={audioRef} controls>
+      <audio ref={audioRef}>
         <source src={radioData.url} type="audio/mpeg" />
         <track kind="captions" />
         Seu navegador não suporta o elemento de áudio.
       </audio>
       <button onClick={handlePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
-      <div>
+      <div className="w-52">
         <input
           type="range"
           min="0"
@@ -101,6 +101,7 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
           value={currentTime}
           onChange={handleProgressChange}
           style={{ width: '100%' }}
+          // className="w-fit"
         />
       </div>
       <div>{formatTime(currentTime)}</div>
