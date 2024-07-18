@@ -11,12 +11,15 @@ import InputText from '@/components/atoms/input-text'
 import SkeletonCard from '@/components/atoms/skeleton-card'
 import { type RadioData } from '@/types/AllTypes'
 import { SearchRadioSchema, type SearchRadioSchemaData } from '@/validations/SearchRadioSchema'
+import PaginationRadio from '@/components/molecules/pagination-radio/pagination-radio'
 
 const api = new ClientHTTP()
 
 function SearchRadioForm(): React.JSX.Element {
   const [isLoading, setIsLoading] = React.useState(false)
-  const { register, formState, handleSubmit } = useForm<SearchRadioSchemaData>({
+  const [currentPage, setCurrentPage] = React.useState(1)
+
+  const { register, formState, handleSubmit, getValues } = useForm<SearchRadioSchemaData>({
     mode: 'all',
     resolver: zodResolver(SearchRadioSchema),
   })
@@ -31,9 +34,7 @@ function SearchRadioForm(): React.JSX.Element {
     const { searchBy, searchTerm } = data
     try {
       const response = await api.get(API_BASE_URL + `/${searchBy}/${searchTerm}?limit=10&offset=0`)
-      console.log('response', response)
       if (response.status === 200) {
-        // const result = await response.json()
         setRadioData(response.data as RadioData[])
         setIsLoading(false)
       }
@@ -47,15 +48,37 @@ function SearchRadioForm(): React.JSX.Element {
     }
   }
 
+  React.useEffect(() => {
+    setIsLoading(true)
+
+    api
+      .get(API_BASE_URL + `/${getValues('searchBy')}/${getValues('searchTerm')}?limit=10&offset=${currentPage - 1}`)
+      .then(response => {
+        if (response.status === 200) {
+          setRadioData(response.data as RadioData[])
+          setIsLoading(false)
+        }
+      })
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.log('error.searchRadioForm', error)
+        setRadioData([])
+        setHasError(error)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }, [currentPage, getValues])
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="sm:py-4 px-2 sm:px-4 mx-auto max-w-screen-2xl text-center lg:py-8 z-10 relative">
         <form
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full mx-auto sm:flex text-start"
+          className=" mx-auto sm:flex text-start"
         >
-          <div className="sm:flex justify-around w-full">
+          <div className="flex">
             <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
               <div className="mt-4">
                 <h4 className="mt-6 mb-2 text-sm sm:text-base font-medium text-gray-900 dark:text-white">
@@ -98,7 +121,7 @@ function SearchRadioForm(): React.JSX.Element {
               <Button
                 type="submit"
                 color="primary"
-                className="mt-6 w-full sm:w-fit font-extrabold"
+                className="mt-6 w-full sm:w-fit font-extrabold p-0"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -136,16 +159,20 @@ function SearchRadioForm(): React.JSX.Element {
 
       <h2 className="text-4xl text-center mb-4 sm:mb-8 dark:text-gray-200">Radios encontradas</h2>
 
-      <div className="grid grid-cols-1 gap-4 gap-y-8 sm:gap-y-16 w-full h-full sm:ml-12">
+      <div className="grid grid-cols-1 gap-4 gap-y-8 sm:gap-y-16 w-full h-full">
         {isLoading ? (
           Array.from({ length: 7 }).map((_, index) => <SkeletonCard key={`${index}-event-skeleton-card`} />)
         ) : radioData.length > 0 ? (
-          radioData.map((radio, index) => (
-            <div key={`${index}-radio-${radio.name}-card`} className="max-w-[100vw]">
-              <h1 className="text-2xl font-bold dark:text-gray-200">{radio.name}</h1>
-              <p className="text-gray-500 dark:text-gray-400">{radio.url}</p>
-            </div>
-          ))
+          <div>
+            {radioData.map((radio, index) => (
+              <button key={`${index}-radio-${radio.name}-card`} className="w-full flex">
+                <h1 className="text-2xl font-bold dark:text-gray-200">{radio.name}</h1>
+                {/* <p className="text-gray-500 dark:text-gray-400">{radio.url}</p> */}
+                <div>{/* <button></button> */}</div>
+              </button>
+            ))}
+            <PaginationRadio currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          </div>
         ) : (
           <div> Sem Resultados </div>
         )}

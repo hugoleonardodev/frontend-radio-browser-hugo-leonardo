@@ -44,9 +44,9 @@ export default async function RootLayout({
           <ThemeModeScript />
         </Head> */}
 
-          <body className={`${inter.variable} ${robotoMono.variable} sm:flex`}>
+          <body className={`${inter.variable} ${robotoMono.variable} flex`}>
             <SearchNavigation />
-            <main className="flex items-start sm:items-start p-4 sm:p-8 gap-8">{children}</main>
+            <main className="flex items-start p-4 sm:p-8 gap-8">{children}</main>
           </body>
         </html>
       </RadioPlayerProvider>
