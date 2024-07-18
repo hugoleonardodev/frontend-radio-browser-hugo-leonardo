@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation'
 import React from 'react'
 import { useWindowSize } from '@/hooks'
 import clsx from 'clsx'
+import SearchRadioForm from '../search-radio-form/search-radio-form'
 
 interface SearchNavigationProps {
   searchNavigationDictionary?: {
@@ -37,7 +38,7 @@ function SearchNavigation({ searchNavigationDictionary }: SearchNavigationProps)
   return (
     <aside
       id="default-sidebar"
-      className={`${toggleSettings ? 'w-full' : width < 767 ? 'w-fit' : 'w-64'} sm:min-w-96 transition-transform ${
+      className={`${toggleSettings ? 'w-full' : width < 767 ? 'w-fit' : 'w-fit'}  transition-transform ${
         toggleSettings ? '' : '-translate-x-[100vw]'
       } ${width < 767 ? '' : 'fixed'} fixed min-w-fit sm:translate-x-0 sm:relative z-20`}
       aria-label="Sidebar"
@@ -50,7 +51,7 @@ function SearchNavigation({ searchNavigationDictionary }: SearchNavigationProps)
           aria-controls="drawer-left-example"
           className={`transition-transform ${
             toggleSettings ? '' : 'translate-x-[100vw]'
-          } sm:translate-x-0 sm:relative text-gray-400 bg-gray-200 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white`}
+          } sm:translate-x-0 sm:relative z-30 text-gray-400 bg-gray-200 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white`}
         >
           <svg
             className="w-3 h-3"
@@ -72,6 +73,7 @@ function SearchNavigation({ searchNavigationDictionary }: SearchNavigationProps)
         </button>
       ) : null}
 
+      <SearchRadioForm />
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul className="space-y-2 font-medium">
           <li>

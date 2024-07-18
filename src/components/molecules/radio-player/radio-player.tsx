@@ -58,14 +58,15 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
   }, [])
 
   React.useEffect(() => {
-    if (audioRef.current != null) {
-      audioRef.current.addEventListener('timeupdate', handleTimeUpdate)
-      audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata)
+    const currentAudioRef = audioRef.current
+    if (currentAudioRef != null) {
+      currentAudioRef.addEventListener('timeupdate', handleTimeUpdate)
+      currentAudioRef.addEventListener('loadedmetadata', handleLoadedMetadata)
     }
     return () => {
-      if (audioRef.current != null) {
-        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate)
-        audioRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      if (currentAudioRef != null) {
+        currentAudioRef.removeEventListener('timeupdate', handleTimeUpdate)
+        currentAudioRef.removeEventListener('loadedmetadata', handleLoadedMetadata)
       }
     }
   }, [])
@@ -95,8 +96,8 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
       </div>
       <div>{formatTime(currentTime)}</div>
       <div>
-        <label>Volume</label>
-        <input type="range" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange} />
+        <label htmlFor="volume">Volume</label>
+        <input type="range" name="volume" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange} />
       </div>
     </div>
   )
