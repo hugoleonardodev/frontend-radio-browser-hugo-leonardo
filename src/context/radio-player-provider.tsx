@@ -2,8 +2,11 @@
 import React from 'react'
 
 interface RadioPlayerContextProps {
+  currentRadio: HTMLAudioElement | null
   playRadio: (audioRef: HTMLAudioElement | null) => void
   stopRadio: (audioRef: HTMLAudioElement | null) => void
+  isPlaying: boolean
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const RadioPlayerContext = React.createContext<RadioPlayerContextProps | undefined>(undefined)
@@ -14,6 +17,7 @@ interface RadioPlayerProviderProps {
 
 export const RadioPlayerProvider = ({ children }: RadioPlayerProviderProps): React.JSX.Element => {
   const [currentRadio, setCurrentRadio] = React.useState<HTMLAudioElement | null>(null)
+  const [isPlaying, setIsPlaying] = React.useState(false)
 
   const playRadio = React.useCallback(
     (audioRef: HTMLAudioElement | null): void => {
@@ -37,7 +41,10 @@ export const RadioPlayerProvider = ({ children }: RadioPlayerProviderProps): Rea
     }
   }, [])
 
-  const radioPlayerContext = React.useMemo(() => ({ playRadio, stopRadio }), [playRadio, stopRadio])
+  const radioPlayerContext = React.useMemo(
+    () => ({ currentRadio, playRadio, stopRadio, isPlaying, setIsPlaying }),
+    [currentRadio, playRadio, stopRadio, isPlaying, setIsPlaying],
+  )
 
   return <RadioPlayerContext.Provider value={radioPlayerContext}>{children}</RadioPlayerContext.Provider>
 }

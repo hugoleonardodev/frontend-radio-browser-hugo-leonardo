@@ -8,58 +8,45 @@ interface RadioPlayerProps {
 }
 
 const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
-  const audioRef = React.useRef(null)
+  const audioRef = React.useRef<null | HTMLAudioElement>(null)
 
-  const { playRadio, stopRadio } = useRadioPlayer()
-  const [isPlaying, setIsPlaying] = React.useState(false)
+  const { currentRadio, playRadio, stopRadio } = useRadioPlayer()
   const [currentTime, setCurrentTime] = React.useState(0)
   const [duration, setDuration] = React.useState(0)
   const [volume, setVolume] = React.useState(100)
 
   const handlePlayPause = React.useCallback(() => {
-    if (audioRef.current != null) {
-      if (isPlaying) {
-        stopRadio(audioRef.current)
-        setIsPlaying(false)
-      } else {
-        playRadio(audioRef.current)
-        setIsPlaying(true)
-      }
+    if (audioRef.current != null && currentRadio === audioRef.current) {
+      stopRadio(audioRef.current)
+    } else {
+      playRadio(audioRef.current)
     }
-  }, [isPlaying, playRadio, stopRadio])
+  }, [currentRadio, playRadio, stopRadio])
 
   const handleTimeUpdate = React.useCallback(() => {
     if (audioRef.current != null) {
-      const unknownRef = audioRef as unknown
-      const currentAudio = unknownRef as React.MutableRefObject<HTMLAudioElement>
-      setCurrentTime(currentAudio.current.currentTime)
+      setCurrentTime(audioRef.current.currentTime)
     }
   }, [])
 
   const handleLoadedMetadata = React.useCallback(() => {
     if (audioRef.current != null) {
-      const unknownRef = audioRef as unknown
-      const currentAudio = unknownRef as React.MutableRefObject<HTMLAudioElement>
-      setDuration(currentAudio.current.duration)
+      setDuration(audioRef.current.duration)
     }
   }, [])
 
   const handleVolumeChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current != null) {
-      const unknownRef = audioRef as unknown
-      const currentAudio = unknownRef as React.MutableRefObject<HTMLAudioElement>
       const newVolume = parseFloat(event.target.value)
-      currentAudio.current.volume = newVolume
+      audioRef.current.volume = newVolume
       setVolume(newVolume)
     }
   }, [])
 
   const handleProgressChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current != null) {
-      const unknownRef = audioRef as unknown
-      const currentAudio = unknownRef as React.MutableRefObject<HTMLAudioElement>
       const newTime = parseFloat(event.target.value)
-      currentAudio.current.currentTime = newTime
+      audioRef.current.currentTime = newTime
       setCurrentTime(newTime)
     }
   }, [])
@@ -71,28 +58,30 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
   }, [])
 
   React.useEffect(() => {
-    const unknownRef = audioRef as unknown
-    const currentAudio = unknownRef as React.MutableRefObject<HTMLAudioElement>
-    if (currentAudio.current != null) {
-      currentAudio.current.addEventListener('timeupdate', handleTimeUpdate)
-      currentAudio.current.addEventListener('loadedmetadata', handleLoadedMetadata)
+    if (audioRef.current != null) {
+      audioRef.current.addEventListener('timeupdate', handleTimeUpdate)
+      audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata)
     }
     return () => {
-      if (currentAudio.current != null) {
-        currentAudio.current.removeEventListener('timeupdate', handleTimeUpdate)
-        currentAudio.current.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      if (audioRef.current != null) {
+        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate)
+        audioRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata)
       }
     }
   }, [])
 
   return (
-    <div>
+    <div
+      className={`text-gray-400 bg-gray-200 hover:bg-gray-200 ${
+        currentRadio === audioRef.current ? 'bg-gray-400 dark:bg-gray-600' : 'Play'
+      } hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white`}
+    >
       <audio ref={audioRef}>
         <source src={radioData.url} type="audio/mpeg" />
         <track kind="captions" />
         Seu navegador não suporta o elemento de áudio.
       </audio>
-      <button onClick={handlePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
+      <button onClick={handlePlayPause}>{currentRadio === audioRef.current ? 'Pause' : 'Play'}</button>
       <div className="w-52">
         <input
           type="range"
@@ -100,8 +89,8 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
           max={duration}
           value={currentTime}
           onChange={handleProgressChange}
-          style={{ width: '100%' }}
-          // className="w-fit"
+          // style={{ width: '100%' }}
+          className="w-full"
         />
       </div>
       <div>{formatTime(currentTime)}</div>

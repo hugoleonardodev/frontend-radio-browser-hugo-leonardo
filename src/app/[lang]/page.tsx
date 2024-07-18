@@ -3,7 +3,6 @@ import { type LocalesAvailable } from '@/functions/getDictionary'
 import RadioPlayer from '@/components/molecules/radio-player'
 
 import tenRadios from '@/data/ten-radios.json'
-import SearchRadio from '@/components/organisms/search-radio'
 
 export default async function Home({ params }: { params: { lang: LocalesAvailable } }): Promise<React.JSX.Element> {
   const { lang } = params
@@ -20,7 +19,6 @@ export default async function Home({ params }: { params: { lang: LocalesAvailabl
           </div>
         ))}
       </section>
-      {/* <RadioPlayer streamUrl="http://a1rj.streams.com.br:7801/stream" /> */}
     </div>
   )
 }
