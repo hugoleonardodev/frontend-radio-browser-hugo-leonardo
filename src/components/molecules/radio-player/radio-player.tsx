@@ -84,7 +84,7 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
 
   return (
     <div
-      className={`text-gray-400 bg-gray-200 hover:bg-gray-200 flex ${
+      className={`text-gray-400 bg-gray-200 hover:bg-gray-200 flex sm:mx-2 ${
         currentRadio === audioRef.current ? 'bg-gray-400 dark:bg-gray-800' : 'dark:bg-gray-600'
       } hover:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white`}
     >
@@ -96,90 +96,105 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
 
       {width > 768 ? (
         <div className="w-20">
-          <label htmlFor="volume">Volume</label>
+          <label htmlFor={`${radioData.changeuuid}-volume`} className="text-gray-900 dark:text-gray-300">
+            Volume
+          </label>
           <input
             type="range"
-            name="volume"
+            id={`${radioData.changeuuid}-volume`}
             min="0"
             max="1"
             step="0.01"
             value={volume}
             onChange={handleVolumeChange}
-            className="-rotate-90 w-12"
+            className="-rotate-90 w-12 relative top-2"
           />
         </div>
       ) : null}
 
-      <button onClick={handlePlayPause}>
+      <button onClick={handlePlayPause} className="rounded-full">
         {currentRadio === audioRef.current ? (
           <>
             <svg
-              className="w-10 h-10 text-gray-800 dark:text-white"
+              className="w-[48px] h-[48px] text-gray-800 dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
-              fill="none"
+              fill="currentColor"
               viewBox="0 0 24 24"
             >
               <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 6H8a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1Zm7 0h-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1Z"
+                fillRule="evenodd"
+                d="M8 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H8Zm7 0a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1Z"
+                clipRule="evenodd"
               />
             </svg>
+
             <span className="sr-only">Pause</span>
           </>
         ) : (
           <>
             <svg
-              className="w-10 h-10 text-gray-800 dark:text-white"
+              className="w-[48px] h-[48px] text-gray-800 dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
-              fill="none"
+              fill="currentColor"
               viewBox="0 0 24 24"
             >
               <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M8 18V6l8 6-8 6Z"
+                fillRule="evenodd"
+                d="M8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8l8-6a1 1 0 0 0 0-1.6l-8-6Z"
+                clipRule="evenodd"
               />
             </svg>
+
             <span className="sr-only">Play</span>
           </>
         )}
       </button>
-      <div className="flex justify-between w-full ml-4">
+      <div className="flex justify-between w-full sm:ml-4">
         <div>
           <h2 className="text-gray-700 dark:text-gray-200 font-bold">
-            {width < 768 ? `${radioData.name.substring(0, 32)}...` : radioData.name}
+            {width < 768
+              ? `${radioData.name.trim() === '' ? 'Invalid name' : radioData.name.substring(0, 24)}...`
+              : `${
+                  radioData.name.trim() === ''
+                    ? 'Invalid name. Click edit to update.'
+                    : radioData.name.length > 64
+                      ? `${radioData.name.substring(0, 64)}...`
+                      : radioData.name
+                }`}
           </h2>
           <h3 className="text-gray-600 dark:text-gray-300 ">
-            {radioData.country.length > 32 && width < 768
-              ? `${radioData.country.substring(0, 32)}...`
+            {radioData.country.length > 16 && width < 768
+              ? `${radioData.country.substring(0, 16)}...`
               : radioData.country}
-            {/* {radioData.country.length > 0 ? `${radioData.country}` : ''} */}
-            {radioData.country.length > 32 ? '' : radioData.state.length > 0 ? `, ${radioData.state}` : ''}
-            {radioData.country.length > 32 ? '' : `${radioData.tags.length > 0 ? `, ${radioData.tags}` : ''}`}
+            {radioData.country.length > 16 ? '' : radioData.state.length > 0 ? `, ${radioData.state}` : ''}
+            {radioData.tags.length > 8
+              ? `${radioData.tags
+                  .split(',')
+                  .filter(item => item.length < 8)
+                  .slice(0, 3)
+                  .join(',')}...`
+              : `, ${radioData.tags}`}
           </h3>
-          {/* <img className="w-20 h-20 rounded" src={radioData.favicon} alt={radioData.name} /> */}
+          <label htmlFor={`${radioData.changeuuid}-progress`} className="sr-only">
+            Progress
+          </label>
           <div className="w-52 flex">
             <input
+              id={`${radioData.changeuuid}-progress`}
               type="range"
               min="0"
               max={duration}
               value={currentTime}
               onChange={handleProgressChange}
-              // style={{ width: '100%' }}
               className="w-full"
             />
-            <div className="ml-4 text-gray-900 dark:text-gray-300 font-black">{formatTime(currentTime)}</div>
+            <div className="ml-2 sm:ml-4 text-gray-900 dark:text-gray-300 font-black">{formatTime(currentTime)}</div>
           </div>
         </div>
         <div className="flex">

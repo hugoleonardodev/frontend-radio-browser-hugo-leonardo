@@ -41,14 +41,21 @@ function CardRadio({ radio }: CardRadioProps): React.JSX.Element {
         setRefreshFavorites(false)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refreshFavorites])
 
   return (
-    <button className="w-full flex" onClick={addRadioToFavorite} disabled={isFavorite}>
-      <h1 className="text-2xl font-bold dark:text-gray-200">{radio.name}</h1>
+    <button className="w-[99%] flex justify-between" onClick={addRadioToFavorite} disabled={isFavorite}>
+      <h3 className="text-xl font-bold dark:text-gray-200">
+        {radio.name.trim() === ''
+          ? radio.country
+          : radio.name.length > 32
+            ? `${radio.name.substring(0, 32)}...`
+            : radio.name}
+      </h3>
       {isFavorite ? (
         <svg
-          className="w-[24px] h-[24px] text-gray-800 dark:text-white"
+          className="w-6 h-6 text-gray-800 dark:text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
