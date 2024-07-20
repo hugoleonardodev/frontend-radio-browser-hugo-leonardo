@@ -1,4 +1,4 @@
-import { Flowbite } from 'flowbite-react'
+import { Flowbite, ThemeModeScript } from 'flowbite-react'
 import React from 'react'
 import { Inter, Roboto_Mono } from 'next/font/google'
 import { type Metadata } from 'next'
@@ -6,6 +6,7 @@ import { type LocalesAvailable } from '@/functions/getDictionary'
 import { RadioPlayerProvider } from '@/context/radio-player-provider'
 import '@/app/[lang]/globals.css'
 import SearchNavigation from '@/components/organisms/search-navigation/search-navigation'
+import Head from 'next/head'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -40,13 +41,13 @@ export default async function RootLayout({
     <Flowbite>
       <RadioPlayerProvider>
         <html lang={params.lang}>
-          {/* <Head>
-          <ThemeModeScript />
-        </Head> */}
+          <Head>
+            <ThemeModeScript />
+          </Head>
 
           <body className={`${inter.variable} ${robotoMono.variable} flex`}>
             <SearchNavigation />
-            <main className="flex items-start p-4 sm:p-8 gap-8">{children}</main>
+            <main className="flex items-start p-4 sm:p-8 gap-8 w-full">{children}</main>
           </body>
         </html>
       </RadioPlayerProvider>

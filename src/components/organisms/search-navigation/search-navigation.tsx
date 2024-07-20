@@ -1,8 +1,6 @@
 'use client'
-import { usePathname } from 'next/navigation'
 import React from 'react'
 import { useWindowSize } from '@/hooks'
-import clsx from 'clsx'
 import SearchRadioForm from '../search-radio-form/search-radio-form'
 
 interface SearchNavigationProps {
@@ -12,7 +10,6 @@ interface SearchNavigationProps {
 }
 
 function SearchNavigation({ searchNavigationDictionary }: SearchNavigationProps): React.JSX.Element {
-  const pathname = usePathname()
   const { width } = useWindowSize()
   const [toggleSettings, setToggleSettings] = React.useState(false)
 
@@ -20,21 +17,6 @@ function SearchNavigation({ searchNavigationDictionary }: SearchNavigationProps)
     setToggleSettings(!toggleSettings)
   }, [toggleSettings])
 
-  function returnSvgClsx(currentPathname: string): string {
-    const svgClsx = clsx('w-4 h-4 text-gray-600 lg:w-6 lg:h-6 dark:text-gray-300', {
-      'text-purple-600 dark:text-purple-300': pathname.endsWith(currentPathname),
-    })
-    return svgClsx
-  }
-  function returnSpanClsx(currentPathname: string): string {
-    const spanClsx = clsx(
-      'ms-3 flex-1 whitespace-nowrap text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white sm:text-2xl sm:font-extrabold',
-      {
-        'text-gray-900': pathname.endsWith(currentPathname),
-      },
-    )
-    return spanClsx
-  }
   return (
     <aside
       id="default-sidebar"

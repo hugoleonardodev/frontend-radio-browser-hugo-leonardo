@@ -12,6 +12,7 @@ import SkeletonCard from '@/components/atoms/skeleton-card'
 import { type RadioData } from '@/types/AllTypes'
 import { SearchRadioSchema, type SearchRadioSchemaData } from '@/validations/SearchRadioSchema'
 import PaginationRadio from '@/components/molecules/pagination-radio/pagination-radio'
+import CardRadio from '@/components/molecules/card-radio'
 
 const api = new ClientHTTP()
 
@@ -52,7 +53,9 @@ function SearchRadioForm(): React.JSX.Element {
     setIsLoading(true)
 
     api
-      .get(API_BASE_URL + `/${getValues('searchBy')}/${getValues('searchTerm')}?limit=10&offset=${currentPage - 1}`)
+      .get(
+        API_BASE_URL + `/${getValues('searchBy')}/${getValues('searchTerm')}?limit=10&offset=${(currentPage - 1) * 10}`,
+      )
       .then(response => {
         if (response.status === 200) {
           setRadioData(response.data as RadioData[])
@@ -117,6 +120,7 @@ function SearchRadioForm(): React.JSX.Element {
                 disabled={isLoading}
               />
             </div>
+
             <div className="flex items-center mt-6 sm:mt-2">
               <Button
                 type="submit"
@@ -165,11 +169,7 @@ function SearchRadioForm(): React.JSX.Element {
         ) : radioData.length > 0 ? (
           <div>
             {radioData.map((radio, index) => (
-              <button key={`${index}-radio-${radio.name}-card`} className="w-full flex">
-                <h1 className="text-2xl font-bold dark:text-gray-200">{radio.name}</h1>
-                {/* <p className="text-gray-500 dark:text-gray-400">{radio.url}</p> */}
-                <div>{/* <button></button> */}</div>
-              </button>
+              <CardRadio key={`${index}-radio-${radio.name}-card`} radio={radio} />
             ))}
             <PaginationRadio currentPage={currentPage} setCurrentPage={setCurrentPage} />
           </div>
