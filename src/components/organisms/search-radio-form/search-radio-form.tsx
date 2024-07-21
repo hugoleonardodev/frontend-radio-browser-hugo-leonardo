@@ -13,7 +13,6 @@ import { type RadioData } from '@/types/AllTypes'
 import { SearchRadioSchema, type SearchRadioSchemaData } from '@/validations/SearchRadioSchema'
 import PaginationRadio from '@/components/molecules/pagination-radio/pagination-radio'
 import CardRadio from '@/components/molecules/card-radio'
-import { PROXY_BASE_URL } from '@/constants/proxy'
 
 const api = new ClientHTTP()
 
