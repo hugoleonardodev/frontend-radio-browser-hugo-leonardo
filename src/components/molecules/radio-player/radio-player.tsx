@@ -56,16 +56,6 @@ const RadioPlayer = ({ radioData, currentPage, setCurrentPage }: RadioPlayerProp
     }
   }, [])
 
-  // const removeRadioFromFavorites = React.useCallback(() => {
-  //   const store = localStorage.getItem('radio-browser')
-  //   if (store != null) {
-  //     const parsedStore = JSON.parse(store) as RadioData[]
-  //     const result = parsedStore.filter((item: RadioData) => item.stationuuid !== radioData.stationuuid)
-  //     localStorage.setItem('radio-browser', JSON.stringify(result))
-  //     setRefreshFavorites(true)
-  //   }
-  // }, [radioData.stationuuid, setRefreshFavorites])
-
   const formatTime = React.useCallback((time: number) => {
     const minutes = Math.floor(time / 60)
     const seconds = Math.floor(time % 60)

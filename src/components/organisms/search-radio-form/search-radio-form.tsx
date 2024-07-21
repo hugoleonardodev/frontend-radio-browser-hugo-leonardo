@@ -178,8 +178,8 @@ function SearchRadioForm(): React.JSX.Element {
           </div>
         ) : (
           <div>
-            <h3>No results for the search term:</h3>
-            <p>
+            <h3 className="text-lg text-gray-900 font-bold dark:text-gray-200">No results for the search term:</h3>
+            <p className="text-gray-900 font-bold dark:text-gray-200">
               filter: {getValues('searchBy')}, term: {getValues('searchTerm')}
             </p>
           </div>

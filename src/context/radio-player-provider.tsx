@@ -22,8 +22,6 @@ export const RadioPlayerProvider = ({ children }: RadioPlayerProviderProps): Rea
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [refreshFavorites, setRefreshFavorites] = React.useState(false)
 
-  console.log('refreshFavorites', refreshFavorites)
-
   const playRadio = React.useCallback(
     (audioRef: HTMLAudioElement | null): void => {
       if (currentRadio != null && currentRadio !== audioRef) {

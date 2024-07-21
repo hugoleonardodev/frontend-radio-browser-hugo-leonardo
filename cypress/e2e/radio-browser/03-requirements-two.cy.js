@@ -10,6 +10,6 @@ describe('Radio Browser Challenge App - Persisting user data', () => {
   it('should be able to keep the data in the local storage', () => {
     // cy.get('.todo-list li').should('have.length', 2)
 
-    cy.wait(30000)
+    // cy.wait(30000)
   })
 })

@@ -17,7 +17,6 @@ const InputText: React.FC<InputTextProps> = ({
   register,
   error,
   dirtyField,
-  onChange,
 }) => {
   const inputClass = clsx(
     'block min-w-[9.75rem] px-2.5 pb-2.5 pt-3 w-full text-sm text-gray-800 bg-transparent rounded-lg border-1 border-gray-400 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer',

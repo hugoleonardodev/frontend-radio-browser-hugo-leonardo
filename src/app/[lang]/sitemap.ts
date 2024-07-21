@@ -1,6 +1,6 @@
 import { type MetadataRoute } from 'next'
 
-const baseUrl = 'https://www.website.com'
+const baseUrl = 'https://frontend-radio-browser-hugo-leonardo.vercel.app'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

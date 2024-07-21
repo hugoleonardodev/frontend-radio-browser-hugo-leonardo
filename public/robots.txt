@@ -3,8 +3,8 @@ User-agent: *
 Disallow: /*/user/*/settings
 Disallow: /*/user/*/dashboard
 
-Sitemap: https://www.website.com/sitemap.xml
+Sitemap: https://frontend-radio-browser-hugo-leonardo.vercel.app/pt-BR/sitemap.xml
 
-Sitemap: https://www.website.com/en-US/sitemap.xml
-Sitemap: https://www.website.com/pt-BR/sitemap.xml
-Sitemap: https://www.website.com/es-ES/sitemap.xml
+Sitemap: https://frontend-radio-browser-hugo-leonardo.vercel.app/pt-BR/en-US/sitemap.xml
+Sitemap: https://frontend-radio-browser-hugo-leonardo.vercel.app/pt-BR/pt-BR/sitemap.xml
+Sitemap: https://frontend-radio-browser-hugo-leonardo.vercel.app/pt-BR/es-ES/sitemap.xml
