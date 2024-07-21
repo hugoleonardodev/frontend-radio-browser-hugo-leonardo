@@ -7,8 +7,14 @@ import { type RadioData } from '@/types/AllTypes'
 import { useRadioPlayer } from '@/context/radio-player-provider'
 import PaginationRadio from '@/components/molecules/pagination-radio/pagination-radio'
 import RadioBrowserImage from '@/assets/resized-radio-browser.jpg'
+import { type HomePageDictionaryData } from '@/types/DictionaryTypes'
 
-export default function HomePage(): React.JSX.Element {
+interface HomePageProps {
+  children?: React.ReactNode
+  homePageDictionary: HomePageDictionaryData
+}
+
+export default function HomePage({ homePageDictionary }: HomePageProps): React.JSX.Element {
   const { setRefreshFavorites, refreshFavorites } = useRadioPlayer()
   const [storedValue, setValue] = React.useState([] as RadioData[])
   const [currentPage, setCurrentPage] = React.useState(1)
@@ -44,6 +50,7 @@ export default function HomePage(): React.JSX.Element {
     return []
   }, [currentPage, storedValue])
 
+  console.log('homePageDictionary', homePageDictionary)
   return (
     <div className="flex flex-col h-full w-full bg-gray-200 dark:bg-gray-700">
       <div className="flex justify-between w-full">

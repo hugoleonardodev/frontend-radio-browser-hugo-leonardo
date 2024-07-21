@@ -15,7 +15,7 @@ interface RadioPlayerProps {
 const RadioPlayer = ({ radioData, currentPage, setCurrentPage }: RadioPlayerProps): React.JSX.Element => {
   const audioRef = React.useRef<null | HTMLAudioElement>(null)
   const { width } = useWindowSize()
-  const { currentRadio, playRadio, stopRadio, setRefreshFavorites } = useRadioPlayer()
+  const { currentRadio, playRadio, stopRadio } = useRadioPlayer()
   const [currentTime, setCurrentTime] = React.useState(0)
   const [duration, setDuration] = React.useState(0)
   const [volume, setVolume] = React.useState(100)
@@ -56,15 +56,15 @@ const RadioPlayer = ({ radioData, currentPage, setCurrentPage }: RadioPlayerProp
     }
   }, [])
 
-  const removeRadioFromFavorites = React.useCallback(() => {
-    const store = localStorage.getItem('radio-browser')
-    if (store != null) {
-      const parsedStore = JSON.parse(store) as RadioData[]
-      const result = parsedStore.filter((item: RadioData) => item.stationuuid !== radioData.stationuuid)
-      localStorage.setItem('radio-browser', JSON.stringify(result))
-      setRefreshFavorites(true)
-    }
-  }, [radioData.stationuuid, setRefreshFavorites])
+  // const removeRadioFromFavorites = React.useCallback(() => {
+  //   const store = localStorage.getItem('radio-browser')
+  //   if (store != null) {
+  //     const parsedStore = JSON.parse(store) as RadioData[]
+  //     const result = parsedStore.filter((item: RadioData) => item.stationuuid !== radioData.stationuuid)
+  //     localStorage.setItem('radio-browser', JSON.stringify(result))
+  //     setRefreshFavorites(true)
+  //   }
+  // }, [radioData.stationuuid, setRefreshFavorites])
 
   const formatTime = React.useCallback((time: number) => {
     const minutes = Math.floor(time / 60)

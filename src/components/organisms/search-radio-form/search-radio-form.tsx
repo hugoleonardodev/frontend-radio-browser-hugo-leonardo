@@ -16,6 +16,12 @@ import CardRadio from '@/components/molecules/card-radio'
 
 const api = new ClientHTTP()
 
+const filterOptions = [
+  { value: 'byname', description: 'Name' },
+  { value: 'bycountry', description: 'Country' },
+  { value: 'bylanguage', description: 'Language' },
+]
+
 function SearchRadioForm(): React.JSX.Element {
   const [isLoading, setIsLoading] = React.useState(false)
   const [currentPage, setCurrentPage] = React.useState(1)
@@ -93,11 +99,7 @@ function SearchRadioForm(): React.JSX.Element {
                 <InputSelect
                   label="Filter by"
                   name="searchBy"
-                  options={[
-                    { value: 'byname', description: 'Name' },
-                    { value: 'bycountry', description: 'Country' },
-                    { value: 'bylanguage', description: 'Language' },
-                  ]}
+                  options={filterOptions}
                   error={errors.searchBy}
                   register={register}
                   id="searchBy"
