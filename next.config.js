@@ -11,37 +11,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'ibb.co',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.ibb.co',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'hugoleonardodev.github.io',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.postimg.cc',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'postimg.cc',
         port: '',
         pathname: '/**',
       },
@@ -54,8 +24,8 @@ const nextConfig = {
         destination: '/assets/:path*',
       },
       // {
-      //   source: '/:path*.txt',
-      //   destination: '/:path*.txt',
+      //   source: '/:locale/:path*',
+      //   destination: '/:path*',
       // },
       {
         source: '/:path*.xml',
@@ -71,6 +41,25 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/:lang/api/:path*',
+        has: [
+          {
+            type: 'query',
+            key: 'limit',
+          },
+          {
+            type: 'query',
+            key: 'offset',
+          },
+        ],
+        destination: '/api/:path*',
+        permanent: true,
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig

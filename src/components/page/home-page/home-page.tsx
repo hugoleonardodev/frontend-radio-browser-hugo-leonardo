@@ -50,7 +50,6 @@ export default function HomePage({ homePageDictionary }: HomePageProps): React.J
     return []
   }, [currentPage, storedValue])
 
-  console.log('homePageDictionary', homePageDictionary)
   return (
     <div className="flex flex-col h-full w-full bg-gray-200 dark:bg-gray-700">
       <div className="flex justify-between w-full">
