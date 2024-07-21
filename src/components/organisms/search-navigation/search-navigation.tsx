@@ -20,9 +20,9 @@ function SearchNavigation({ searchNavigationDictionary }: SearchNavigationProps)
   return (
     <aside
       id="default-sidebar"
-      className={`w-[100vw] sm:w-[50vw] h-full ${toggleSettings ? 'overflow-scroll' : ''} transition-transform ${
+      className={`w-[100vw] sm:w-[50vw] min-h-[100vh] ${toggleSettings ? 'overflow-scroll' : ''} transition-transform ${
         toggleSettings ? '' : '-translate-x-[100vw]'
-      } absolute sm:translate-x-0 sm:relative z-20 bg-gray-200 dark:bg-gray-900`}
+      } absolute sm:translate-x-0 sm:relative z-20 bg-gray-400 dark:bg-gray-900`}
       aria-label="Sidebar"
     >
       {width < 767 ? (

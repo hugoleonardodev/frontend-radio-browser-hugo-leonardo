@@ -74,7 +74,7 @@ function SearchRadioForm(): React.JSX.Element {
   }, [currentPage, getValues])
 
   return (
-    <section className="h-full bg-gray-200 dark:bg-gray-900">
+    <section className="h-full flex flex-col justify-between bg-gray-400 dark:bg-gray-900">
       <h1 className="ml-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Radio Browser</h1>
       <h2 className="ml-2 font-bold tracking-tight text-gray-900 dark:text-gray-300">
         Search by name, country or language
@@ -165,7 +165,7 @@ function SearchRadioForm(): React.JSX.Element {
 
       <h2 className="text-2xl text-center mb-2 sm:mb-4 dark:text-gray-200">Radios found</h2>
 
-      <div className="grid grid-cols-1 gap-2 w-full h-full">
+      <div className="grid grid-cols-1 gap-2 w-full">
         {isLoading ? (
           Array.from({ length: 10 }).map((_, index) => <SkeletonCard key={`${index}-event-skeleton-card`} />)
         ) : responseRadioData.length > 0 ? (
@@ -173,11 +173,6 @@ function SearchRadioForm(): React.JSX.Element {
             {responseRadioData.map((radio, index) => (
               <CardRadio key={`${index}-radio-${radio.name}-card`} radio={radio} />
             ))}
-            <PaginationRadio
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageHasLessThanMaxItems={responseRadioData.length < 10}
-            />
           </div>
         ) : (
           <div>
@@ -188,6 +183,11 @@ function SearchRadioForm(): React.JSX.Element {
           </div>
         )}
       </div>
+      <PaginationRadio
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pageHasLessThanMaxItems={responseRadioData.length < 10}
+      />
     </section>
   )
 }

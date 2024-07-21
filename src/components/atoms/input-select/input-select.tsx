@@ -1,32 +1,6 @@
+import { type InputSelectProps } from '@/types/AllTypes'
 import clsx from 'clsx'
 import React from 'react'
-import { type FieldError, type FieldErrorsImpl, type Merge, type UseFormRegister } from 'react-hook-form'
-
-export type ValidFieldNames = 'searchBy' | 'searchTerm'
-
-export interface SearchRadioData {
-  searchTerm: string
-  searchBy: string
-}
-
-export interface SearchByOptions {
-  value: string
-  description: string
-}
-
-export interface InputSelectProps extends React.HTMLAttributes<HTMLSelectElement> {
-  name: ValidFieldNames
-  label: string
-  disabled?: boolean
-  options: Array<Record<string, string>>
-  defaultValue?: string
-  value?: string | number | readonly string[] | undefined
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>
-  register: UseFormRegister<SearchRadioData>
-  dirtyField?: boolean
-  error: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined | undefined
-}
-
 function InputSelect({
   label,
   name,
@@ -54,7 +28,7 @@ function InputSelect({
     className,
   )
   const labelClasses = clsx(
-    'absolute text-sm text-gray-500 bg-gray-200 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1',
+    'absolute text-sm text-gray-600 bg-gray-400 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1',
     { 'text-sm font-medium dark:text-green-500': disabled === false && error == null },
     { 'text-sm font-medium text-purple-700 dark:text-purple-500': disabled === false && error },
     {

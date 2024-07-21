@@ -3,6 +3,7 @@ import { useRadioPlayer } from '@/context/radio-player-provider'
 import { useWindowSize } from '@/hooks'
 import { type RadioData } from '@/types/AllTypes'
 import React from 'react'
+import ModalEditRadio from '../modal-edit-radio/modal-edit-radio'
 
 interface RadioPlayerProps {
   radioData: RadioData
@@ -83,10 +84,14 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
   }, [handleLoadedMetadata, handleTimeUpdate])
 
   return (
+    // <Tooltip content={radioData.user_notes != null ? radioData.user_notes : 'No notes'}>
     <div
-      className={`text-gray-400 bg-gray-200 hover:bg-gray-200 flex sm:mx-2 ${
+      className={`text-gray-400 bg-gray-300 hover:bg-gray-400 flex w-full sm:mx-2 ${
         currentRadio === audioRef.current ? 'bg-gray-400 dark:bg-gray-800' : 'dark:bg-gray-600'
       } hover:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white`}
+      title={`${radioData.name}, ${radioData.country}, ${radioData.tags} \n*** User Notes: ${
+        radioData.user_notes ?? 'No notes'
+      }`}
     >
       <audio ref={audioRef}>
         <source src={radioData.url} type="audio/mpeg" />
@@ -199,7 +204,7 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
         </div>
         <div className="flex">
           {width > 768 ? (
-            <button>
+            <ModalEditRadio radioData={radioData}>
               <svg
                 className="w-[24px] h-[24px] text-gray-800 dark:text-white"
                 aria-hidden="true"
@@ -218,7 +223,7 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
                 />
               </svg>
               <span className="sr-only">Edit</span>
-            </button>
+            </ModalEditRadio>
           ) : null}
           <button onClick={removeRadioFromFavorites} value={radioData.stationuuid}>
             <svg

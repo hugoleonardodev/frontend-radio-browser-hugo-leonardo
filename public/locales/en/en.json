@@ -1,0 +1,64 @@
+{
+  "homePage": {
+    "title": "Radio Browser",
+    "description": "Browse and listen to your favorite radios",
+    "searchRadio": {
+      "description": "Search by name, country or language",
+      "filter": {
+        "title": "Filter",
+        "label": "Filter by:",
+        "placeholder": "Name, country or language",
+        "options": [
+          { "label": "Name", "value": "byname" },
+          { "label": "Country", "value": "bycountry" },
+          { "label": "Language", "value": "bylanguage" }
+        ]
+      },
+      "searchTerm": {
+        "title": "Search term",
+        "label": "Type a search term",
+        "placeholder": "BBC, UK, English"
+      },
+      "search": "Search",
+      "radiosFound": "Radios found",
+      "noRadiosFound": "No radios found"
+    },
+    "favoriteRadios": {
+      "description": "Your favorite radios",
+      "noFavoriteRadios": "Please search for your favorite radios, and add them to your collection.",
+      "radioPlayer": {
+        "description": "Listen to your favorite radios",
+        "play": "Play",
+        "pause": "Pause",
+        "time": "Time",
+        "volume": "Volume",
+        "mute": "Mute",
+        "unmute": "Unmute",
+        "refresh": "Refresh",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "editModal": {
+        "title": "Edit radio data",
+        "description": "Some radio names are empty. Add a few notes if needed.",
+        "editName": "Edit name",
+        "userNotes": "User notes",
+        "save": "Save",
+        "cancel": "Cancel",
+        "close": "Close"
+      },
+      "deleteModal": {
+        "title": "Delete radio",
+        "description": "Are you sure you want to delete this radio?",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "close": "Close"
+      }
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "currentPage": "Current page:"
+    }
+  }
+}

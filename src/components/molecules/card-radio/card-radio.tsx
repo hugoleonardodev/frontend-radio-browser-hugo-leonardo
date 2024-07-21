@@ -45,7 +45,7 @@ function CardRadio({ radio }: CardRadioProps): React.JSX.Element {
   }, [refreshFavorites])
 
   return (
-    <button className="w-[99%] flex justify-between" onClick={addRadioToFavorite} disabled={isFavorite}>
+    <button className="w-[99%] flex justify-between cursor-pointer" onClick={addRadioToFavorite} disabled={isFavorite}>
       <h3 className="text-xl font-bold dark:text-gray-200">
         {radio.name.trim() === ''
           ? radio.country

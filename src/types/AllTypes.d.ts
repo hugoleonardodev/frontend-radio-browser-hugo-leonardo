@@ -1,3 +1,6 @@
+import { type Infer } from 'next/dist/compiled/superstruct'
+import { type FieldError, type FieldErrorsImpl, type Merge, type UseFormRegister } from 'react-hook-form'
+
 export interface RadioData {
   changeuuid: string
   stationuuid: string
@@ -35,4 +38,57 @@ export interface RadioData {
   geo_lat: number | null
   geo_long: number | null
   has_extended_info: boolean
+  user_notes?: string
+}
+
+export type ValidFieldNames = 'searchBy' | 'searchTerm' | 'radioName' | 'userNotes'
+
+export interface SearchRadioData {
+  searchTerm: string
+  searchBy: string
+}
+
+export interface SearchByOptions {
+  value: string
+  description: string
+}
+
+export interface EditRadioData {
+  radioName: string
+  userNotes: string
+}
+
+export type AuthFormData = Infer<SearchRadioData | EditRadioData>
+
+export interface InputSelectProps extends React.HTMLAttributes<HTMLSelectElement> {
+  name: ValidFieldNames
+  label: string
+  disabled?: boolean
+  options: Array<Record<string, string>>
+  defaultValue?: string
+  value?: string | number | readonly string[] | undefined
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>
+  register: UseFormRegister<AuthFormData>
+  dirtyField?: boolean
+  error: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined | undefined
+}
+
+interface InputTextProps extends React.HTMLAttributes<HTMLInputElement> {
+  type: string
+  placeholder: string
+  name: ValidFieldNames
+  label: string
+  touchedField?: boolean
+  min?: string | number
+  max?: string | number
+  minLength?: number
+  maxLength?: number
+  valueAsNumber?: boolean
+  disabled?: boolean
+  pattern?: string
+  value?: string | number | readonly string[] | undefined
+  register: UseFormRegister<AuthFormData>
+  dirtyField?: boolean
+  error: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined | undefined
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
