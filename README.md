@@ -8,6 +8,8 @@ This is an app designed to search for AM/FM radios around the world. You can als
 
 - [Requirements pt-BR](https://github.com/hugoleonardodev/hugo-radio-browser?tab=readme-ov-file#obrigat%C3%B3rios)
 
+- Bonus requirements: Dark mode and support for multiple languages
+
 ## Languages and Technologies
 
 - Next.js application with TypeScript.
