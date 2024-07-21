@@ -1,6 +1,7 @@
 import { type InputSelectProps } from '@/types/AllTypes'
 import clsx from 'clsx'
 import React from 'react'
+
 function InputSelect({
   label,
   name,
@@ -38,24 +39,11 @@ function InputSelect({
   )
   return (
     <div className="relative " aria-roledescription="input-container">
-      <label
-        htmlFor={name}
-        // className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        className={labelClasses}
-      >
+      <label htmlFor={name} className={labelClasses}>
         {label}
       </label>
 
-      <select
-        defaultValue={options[0].description}
-        // defaultChecked
-        id={name}
-        // className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
-        className={inputClass}
-        {...register(name)}
-      >
-        {/* {defaultValue != null ? <option selected>{defaultValue}</option> : null} */}
-
+      <select defaultValue={options[0].description} id={name} className={inputClass} {...register(name)}>
         {options.map(({ description, value }, index) => (
           <option value={value} key={`${index}-${value}`} className="text-gray-900 dark:bg-gray-500 dark:text-white">
             {description}

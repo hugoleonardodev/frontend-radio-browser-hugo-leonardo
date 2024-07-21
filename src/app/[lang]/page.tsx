@@ -31,10 +31,10 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
     //   },
     // },
     title: 'Radio Browser',
-    description: 'Radio Browser - Conectando patinadores do mundo todo',
+    description: 'Radio Browser - Search and hear your favorite radios',
     openGraph: {
       title: 'Radio Browser',
-      description: 'Radio Browser - Conectando patinadores do mundo todo',
+      description: 'Radio Browser - Search and hear your favorite radios',
       url: 'https://frontend-radio-browser-hugo-leonardo.vercel.app/' + params.lang,
       siteName: 'Radio Browser',
       images: [

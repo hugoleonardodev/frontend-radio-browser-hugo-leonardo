@@ -29,23 +29,23 @@ describe('Radio Browser Challenge App', () => {
     });
   })
 
-  it.only('should be able to remove a radio from favorites', () => {
+  it('should be able to remove a radio from favorites', () => {
     cy.get('.grid > div > :nth-child(2)').click();
     cy.get('.text-gray-400 > .justify-between > :nth-child(2) > :nth-child(2)').click()
     cy.get('.border-transparent > .flex').click().wait(2000)
     cy.get('.bg-gray-200 > .flex-col > div').its('length').should('not.be.greaterThan', 1)
-    cy.wait(30000)
+
   })
 
   it('should be able to edit radio data that is in favorites', () => {
     // cy.get('.todo-list li').should('have.length', 2)
 
-    cy.wait(30000)
+
   })
 
   it('should be able to search for a radio', () => {
     // cy.get('.todo-list li').should('have.length', 2)
 
-    cy.wait(30000)
+
   })
 })

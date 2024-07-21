@@ -10,7 +10,6 @@ const InputControlled: React.FC<InputTextProps> = ({
   register,
   error,
   dirtyField,
-  valueAsNumber,
   className,
   disabled,
   pattern,

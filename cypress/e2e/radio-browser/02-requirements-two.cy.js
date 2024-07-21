@@ -10,18 +10,18 @@ describe('Radio Browser Challenge App - Search Filter', () => {
   it('should be able to seach by radio name filter', () => {
     // cy.get('.todo-list li').should('have.length', 2)
 
-    cy.wait(30000)
+
   })
 
   it('should be able to seach by radio language filter', () => {
     // cy.get('.todo-list li').should('have.length', 2)
 
-    cy.wait(30000)
+
   })
 
   it('should be able to seach by radio country filter', () => {
     // cy.get('.todo-list li').should('have.length', 2)
 
-    cy.wait(30000)
+
   })
 })

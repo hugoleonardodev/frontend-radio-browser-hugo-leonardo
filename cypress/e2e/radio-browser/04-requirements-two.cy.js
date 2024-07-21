@@ -10,6 +10,6 @@ describe('Radio Browser Challenge App - Feature access', () => {
   it('should have all the features from wireframe in the readme', () => {
     // cy.get('.todo-list li').should('have.length', 2)
 
-    cy.wait(30000)
+    // cy.wait(30000)
   })
 })
