@@ -38,7 +38,9 @@ export default function ModalDeleteRadio({
     if (currentFavoritePage.length === 1 && currentPage > 0) {
       setCurrentPage(currentPage - 1)
     }
+    setRefreshFavorites(true)
     setOpenModal(false)
+    // setRefreshFavorites(false)
   }
 
   const handleToggleModal = React.useCallback(() => {

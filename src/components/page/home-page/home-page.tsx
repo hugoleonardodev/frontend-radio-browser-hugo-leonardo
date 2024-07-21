@@ -39,7 +39,7 @@ export default function HomePage({ homePageDictionary }: HomePageProps): React.J
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refreshFavorites])
+  }, [refreshFavorites, setRefreshFavorites])
 
   const currentFavoritesPage = React.useMemo(() => {
     if (storedValue.length > 0) {
