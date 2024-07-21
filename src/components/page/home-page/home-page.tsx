@@ -50,7 +50,6 @@ export default function HomePage({ homePageDictionary }: HomePageProps): React.J
     return []
   }, [currentPage, storedValue])
 
-  console.log('homePageDictionary', homePageDictionary)
   return (
     <div className="flex flex-col h-full w-full bg-gray-200 dark:bg-gray-700">
       <div className="flex justify-between w-full">
@@ -74,7 +73,7 @@ export default function HomePage({ homePageDictionary }: HomePageProps): React.J
             />
           ))
         ) : (
-          <div className="h-full flex flex-col items-center justify-center min-h-[94vh] sm:min-h-none bg-gray-300 dark:bg-gray-900">
+          <div className="h-full flex flex-col items-center justify-center min-h-[94vh] sm:min-h-none bg-gray-200 dark:bg-gray-700">
             <NextImage src={RadioBrowserImage} alt="Radio Browser" width={300} height={300} className="rounded-lg" />
             <h3 className="text-lg font-bold tracking-tight mt-4 text-gray-900 dark:text-white">
               You have not added any favorite radios yet.

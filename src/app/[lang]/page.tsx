@@ -10,14 +10,14 @@ interface Props {
 
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   return {
-    metadataBase: new URL('https://www.rollershub.com'),
-    generator: 'Rollers Hub',
-    applicationName: 'Rollers Hub',
+    metadataBase: new URL('https://frontend-radio-browser-hugo-leonardo.vercel.app'),
+    generator: 'Radio Browser',
+    applicationName: 'Radio Browser',
     referrer: 'origin-when-cross-origin',
-    keywords: ['Patins', 'Onde Patinar', 'Mapa da Patinação', 'Grupos', 'Eventos', 'Notícias', 'Rollers Hub'],
-    authors: [{ name: 'Rollers Hub', url: 'https://www.rollershub.com' }],
-    creator: 'Rollers Hub',
-    publisher: 'Rollers Hub',
+    keywords: ['radio', 'browser', 'am', 'fm', 'language', 'country', 'streaming', 'music'],
+    authors: [{ name: 'Radio Browser', url: 'https://frontend-radio-browser-hugo-leonardo.vercel.app' }],
+    creator: 'Radio Browser',
+    publisher: 'Radio Browser',
     formatDetection: {
       email: false,
       address: false,
@@ -30,27 +30,28 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
     //     'de-DE': '/de-DE',
     //   },
     // },
-    title: 'Rollers Hub',
-    description: 'Rollers Hub - Conectando patinadores do mundo todo',
+    title: 'Radio Browser',
+    description: 'Radio Browser - Conectando patinadores do mundo todo',
     openGraph: {
-      title: 'Rollers Hub',
-      description: 'Rollers Hub - Conectando patinadores do mundo todo',
-      url: 'https://www.rollershub.com/' + params.lang,
-      siteName: 'Rollers Hub',
+      title: 'Radio Browser',
+      description: 'Radio Browser - Conectando patinadores do mundo todo',
+      url: 'https://frontend-radio-browser-hugo-leonardo.vercel.app/' + params.lang,
+      siteName: 'Radio Browser',
       images: [
         {
-          url: '/assets/en-home-thumb-resized.png', // Must be an absolute URL
+          url: '/assets/resized-radio-browser.jpg', // Must be an absolute URL
           width: 1200,
           height: 600,
-          alt: 'Rollers Hub - Logo',
-          type: 'image/png',
+          alt: 'Radio Browser - Logo',
+          type: 'image/jpg',
         },
       ],
       locale: params.lang,
-      type: 'article',
+      type: 'website',
     },
   }
 }
+
 export default async function Home({ params }: { params: { lang: LocalesAvailable } }): Promise<React.JSX.Element> {
   const { lang } = params
   const dictionary = await getDictionary(lang)
