@@ -9,6 +9,7 @@ class ClientHTTP {
       },
     })
     return { status: response.status, data: await response.json() }
+    // return response
   }
 
   async post(

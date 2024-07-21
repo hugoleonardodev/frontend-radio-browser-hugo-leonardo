@@ -16,6 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
           pt: baseUrl + '/pt-BR/',
         },
       },
-    }
+    },
   ]
 }
