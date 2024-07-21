@@ -38,16 +38,18 @@ export default function HomePage({ homePageDictionary }: HomePageProps): React.J
         setRefreshFavorites(false)
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refreshFavorites])
 
   const currentFavoritesPage = React.useMemo(() => {
-    if (storedValue.length > 0) {
+    if (storedValue.length > 0 && currentPage > 1) {
       const start = (currentPage - 1) * 10
       const end = start + 10
       return storedValue.slice(start, end)
+    } else {
+      return storedValue
     }
-    return []
   }, [currentPage, storedValue])
 
   return (

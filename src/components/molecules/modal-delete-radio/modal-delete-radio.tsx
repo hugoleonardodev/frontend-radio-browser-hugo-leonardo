@@ -38,6 +38,7 @@ export default function ModalDeleteRadio({
     if (currentFavoritePage.length === 1 && currentPage > 0) {
       setCurrentPage(currentPage - 1)
     }
+
     setOpenModal(false)
   }
 

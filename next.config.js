@@ -41,25 +41,6 @@ const nextConfig = {
       },
     ]
   },
-  async redirects() {
-    return [
-      {
-        source: '/:lang/api/:path*',
-        has: [
-          {
-            type: 'query',
-            key: 'limit',
-          },
-          {
-            type: 'query',
-            key: 'offset',
-          },
-        ],
-        destination: '/api/:path*',
-        permanent: true,
-      },
-    ]
-  }
 }
 
 module.exports = nextConfig
