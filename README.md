@@ -1,3 +1,22 @@
+## Radio Browser Frontend Challenge
+
+>  Live [Radio Browser Frontend Challenge](https://frontend-radio-browser-hugo-leonardo.vercel.app)
+
+>  This is a challenge by [Coodesh](https://coodesh.com/)
+
+This is an app designed to search for AM/FM radios around the world. You can also add radios to your favorites. Track and hear your favorite radio later, whenever you want.
+
+- [Requirements pt-BR](https://github.com/hugoleonardodev/hugo-radio-browser?tab=readme-ov-file#obrigat%C3%B3rios)
+
+## Languages and Technologies
+
+- Next.js application with TypeScript.
+- Flowbite React is an UI library that is built on top of TailwindCSS. So I can take advantege from both. Because I can have beatiful components whenever I want or build my own component with TailwindCSS.
+- React Hook Form and Zod for input validations. Zod is a TypeScript friendly validator.
+- All the other libraries listed on package.json "dependencies" are recommended by Vercel at Next.js documentation.
+- Tests are configured for both unit with Jest and React Testing Library and Cypress for E2E tests. I have writen a few tests with Cypress.
+- For "devDependencies" I'm using ES Lint and Prettier with several plugins. CSS nano and Post CSS are tools to improve production bundle.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -5,13 +24,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+# Localhost development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Build for production
+npm run build
+# Test with Cypress Open
+npm run test:open
+# Test with Cypress Headless
+npm run test:e2e
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
