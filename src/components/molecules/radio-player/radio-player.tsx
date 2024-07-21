@@ -4,12 +4,15 @@ import { useWindowSize } from '@/hooks'
 import { type RadioData } from '@/types/AllTypes'
 import React from 'react'
 import ModalEditRadio from '../modal-edit-radio/modal-edit-radio'
+import ModalDeleteRadio from '../modal-delete-radio/modal-delete-radio'
 
 interface RadioPlayerProps {
   radioData: RadioData
+  currentPage: number
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
+const RadioPlayer = ({ radioData, currentPage, setCurrentPage }: RadioPlayerProps): React.JSX.Element => {
   const audioRef = React.useRef<null | HTMLAudioElement>(null)
   const { width } = useWindowSize()
   const { currentRadio, playRadio, stopRadio, setRefreshFavorites } = useRadioPlayer()
@@ -225,7 +228,7 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
               <span className="sr-only">Edit</span>
             </ModalEditRadio>
           ) : null}
-          <button onClick={removeRadioFromFavorites} value={radioData.stationuuid}>
+          <ModalDeleteRadio radioData={radioData} currentPage={currentPage} setCurrentPage={setCurrentPage}>
             <svg
               className="w-[24px] h-[24px] text-gray-800 dark:text-white"
               aria-hidden="true"
@@ -244,7 +247,7 @@ const RadioPlayer = ({ radioData }: RadioPlayerProps): React.JSX.Element => {
               />
             </svg>
             <span className="sr-only">Delete</span>
-          </button>
+          </ModalDeleteRadio>
         </div>
       </div>
     </div>

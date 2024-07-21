@@ -74,7 +74,7 @@ function SearchRadioForm(): React.JSX.Element {
   }, [currentPage, getValues])
 
   return (
-    <section className="h-full flex flex-col justify-between bg-gray-400 dark:bg-gray-900">
+    <section className="h-full flex flex-col justify-between bg-gray-300 dark:bg-gray-900">
       <h1 className="ml-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Radio Browser</h1>
       <h2 className="ml-2 font-bold tracking-tight text-gray-900 dark:text-gray-300">
         Search by name, country or language
