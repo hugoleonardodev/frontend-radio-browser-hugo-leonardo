@@ -48,7 +48,8 @@ export default function HomePage({ homePageDictionary }: HomePageProps): React.J
       const end = start + 10
       return storedValue.slice(start, end)
     } else {
-      return storedValue
+      setCurrentPage(1)
+      return storedValue.slice(0, 10)
     }
   }, [currentPage, storedValue])
 

@@ -57,11 +57,13 @@ export default function ModalDeleteRadio({
           onSubmit={handleSubmit(onSubmit)}
         >
           <Modal.Body>
-            <h3>Are you sure you want to delete this radio?</h3>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+              Are you sure you want to delete this radio?
+            </h3>
           </Modal.Body>
           <Modal.Footer>
             <Button type="submit">Delete</Button>
-            <Button color="gray" onClick={handleToggleModal}>
+            <Button color="gray" outline onClick={handleToggleModal}>
               Cancel
             </Button>
           </Modal.Footer>
